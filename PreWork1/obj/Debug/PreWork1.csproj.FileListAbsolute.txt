@@ -1,0 +1,7 @@
+c:\users\dave\source\repos\PreWork1\PreWork1\bin\Debug\PreWork1.exe.config
+c:\users\dave\source\repos\PreWork1\PreWork1\bin\Debug\PreWork1.exe
+c:\users\dave\source\repos\PreWork1\PreWork1\bin\Debug\PreWork1.pdb
+c:\users\dave\source\repos\PreWork1\PreWork1\obj\Debug\PreWork1.csprojResolveAssemblyReference.cache
+c:\users\dave\source\repos\PreWork1\PreWork1\obj\Debug\PreWork1.csproj.CoreCompileInputs.cache
+c:\users\dave\source\repos\PreWork1\PreWork1\obj\Debug\PreWork1.exe
+c:\users\dave\source\repos\PreWork1\PreWork1\obj\Debug\PreWork1.pdb
