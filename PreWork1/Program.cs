@@ -18,13 +18,13 @@ namespace PreWork1
                 string input1 = Console.ReadLine();
 
                 // Validate entry to ensure an integer was entered
-                while (ValidateEntry(input1) == 0)
+                while (CheckInput(input1) == 0)
                 {
                     Console.WriteLine("The value entered was not a positive integer. Please enter a positive integer.");
                     input1 = Console.ReadLine();
-                    ValidateEntry(input1);
+                    CheckInput(input1);
                 }
-                int number1 = ValidateEntry(input1);
+                int number1 = CheckInput(input1);
                 int length1 = number1.ToString().Count();
 
                 // Prompt user to input second integer
@@ -32,13 +32,13 @@ namespace PreWork1
                 string input2 = Console.ReadLine();
 
                 // Validate second entry to ensure integer was entered
-                while (ValidateEntry(input2) == 0)
+                while (CheckInput(input2) == 0)
                 {
                     Console.WriteLine("The value entered was not a positive integer. Please enter another positive integer value with the same number of digits ({0}) as the first:", length1);
                     input2 = Console.ReadLine();
-                    ValidateEntry(input2);
+                    CheckInput(input2);
                 }
-                int number2 = ValidateEntry(input2);
+                int number2 = CheckInput(input2);
                 int length2 = number2.ToString().Count();
 
                 // Ensure integers have the same number of digits
@@ -46,16 +46,16 @@ namespace PreWork1
                 {
                     Console.WriteLine("The integer entered did not contain the same number of digits as the first. Please enter another positive integer value with the same number of digits ({0}) as the first:", length1);
                     input2 = Console.ReadLine();
-                    number2 = ValidateEntry(input2);
+                    number2 = CheckInput(input2);
                     length2 = number2.ToString().Count();
                 }
 
                 // Seperate the individual digits of each integer into respective arrays
-                int[] array1 = SeperateDigits(number1);
-                int[] array2 = SeperateDigits(number2);
+                int[] array1 = Seperate(number1);
+                int[] array2 = Seperate(number2);
 
                 // Do the computation, return true or false, and display result
-                bool result = Compute(array1, array2);
+                bool result = Computation(array1, array2);
                 Console.WriteLine("Int 1 = " + number1 + "\r\nInt 2 = " + number2 + "\r\n" + result);
                 Console.WriteLine("Please press any key to continue.");
                 Console.ReadKey();
@@ -64,44 +64,49 @@ namespace PreWork1
                 Console.WriteLine("\r\nWould you like to run this program again? (Yes/No)");
                 if (Console.ReadLine().ToLower() != "yes")
                 break;
+                
              }
         }
-
-        // Method to parse user input, ensure integer is positive
-        static int ValidateEntry(string input)
+        // Method that separates digits into an array
+        public static int[] Seperate(int number)
         {
-            int.TryParse(input, out int number);
-            if (number < 0)
+            List<int> separateIntegers = new List<int>();
+            while (number > 0)
+            {
+                separateIntegers.Add(number % 10);
+                number = number / 10;
+            }
+            
+            return separateIntegers.ToArray();
+        }
+
+        // Method checks user input to make sure it's a positive integer
+        public static int CheckInput(string input)
+        {
+            int.TryParse(input, out int integer);
+            if (integer < 0)
             {
                 return 0;
             }
             else
             {
-                return number;
+                return integer;
             }
         }
 
-        // Method to convert each integer into array
-        static int[] SeperateDigits(int number)
+        // Method for adding each separate digit and checking if it returns true or false
+        public static bool Computation(int[] arrayA, int[] arrayB)
         {
-            int[] digits = number.ToString().ToCharArray().Select(x => (int)Char.GetNumericValue(x)).ToArray();
-            return digits;
-        }
+            int result = arrayA[0] + arrayB[0];
 
-        // Method for the computation
-        static bool Compute(int[] array1, int[] array2)
-        {
-            int answer = array1[0] + array2[0];
-
-            for (int i = 1; i < array1.Length; i++)
+            for (int i = 1; i < arrayA.Length; i++)
             {
-                if (array1[i] + array2[i] != answer)
+                if (arrayA[i] + arrayB[i] != result)
                 {
                     return false;
                 }
             }
-
-                   return true;
+                    return true;
         }
     }
 }
